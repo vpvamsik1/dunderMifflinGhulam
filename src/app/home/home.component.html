@@ -1,0 +1,30 @@
+
+<div id="main">
+
+    <h2 class="mb-3">Welcome to Dunder-Mifflin</h2>
+    <p class="mb-1">Welcome to dunder mifflin internal network</p>
+    <p class="mb-1">Please enter a username to view your posts and comments</p>
+    <!-- <p *ngIf="returnUrl" style="color: red;">Please log in with an email.</p> -->
+    <p *ngIf="returnUrl" style="color: red; font-weight: bold;">Please log in with the right email [{{rightEmail}}]</p>
+    <form class="mt-3 mb-5" (ngSubmit)="onSubmit()" #f="ngForm">
+        <p class="mb-0 mt-1" id="invalidEmail" *ngIf="!emailValid">Invalid Email </p>
+        <input class="mb-0 mt-1" type="email" id="email" name="email" [(ngModel)]="rEmail" required email><br>
+        <button 
+            class="btn btn-primary mt-2" 
+            type="submit"
+            [disabled]="!f.valid"
+            >Login</button>
+    </form>
+    <!-- <div class="card" style="width: 18rem;">
+        <div class="card-header">
+            Featured
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Email: {{ rEmail }}</li>
+            <li class="list-group-item">Index: {{ index }}  </li>
+        </ul>
+    </div> -->
+
+
+</div>
+

@@ -1,0 +1,13 @@
+#address, #phone, #mail{
+    display: flex;
+    justify-content: flex-start;
+}
+i{
+    font-size: 46px;
+    margin-right: 8%;
+    width: 46px;
+}
+#box1{
+    border: 2px solid black;
+    padding: 3%;
+}

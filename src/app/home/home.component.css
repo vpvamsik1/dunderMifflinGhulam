@@ -1,0 +1,19 @@
+#main{
+    text-align: center;
+    width: 50%;
+    margin: 20px auto;
+}
+input, button{
+
+    width: 100%;
+}
+/* button{
+    margin-top: 1em;
+} */
+
+#invalidEmail{
+    color: red;
+}
+form{
+    text-align: left;
+}
