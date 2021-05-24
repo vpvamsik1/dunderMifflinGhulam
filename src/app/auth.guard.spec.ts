@@ -46,22 +46,32 @@ describe('AuthGuard', () => {
   });
 
   it('should allow the user',()=>{
+    stateMock.url ='profile/1';
+    mockUser.id=1;
     localStorage.setItem("activeUser", JSON.stringify(mockUser));
     expect(guard.canActivate(nextMock,stateMock)).toBeTrue();
   });
 
   it('should disallow the user when id in url is not matched',()=>{
     mockUser.id=2;
+    stateMock.url ='profile/1';
     localStorage.setItem("activeUser", JSON.stringify(mockUser));
     expect(guard.canActivate(nextMock,stateMock)).toBeFalse();
     expect(routerMock.navigate).toHaveBeenCalledWith(['/'],{queryParams:{returnUrl:1}});
   });
 
   it('should disallow the user when there is no activeuser',()=>{
-    // localStorage.setItem("activeUser", JSON.stringify(mockUser));
     localStorage.removeItem("activeUser");
+    stateMock.url ='/';
     expect(guard.canActivate(nextMock,stateMock)).toBeFalse();
     expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
+  });
+
+  it('should redirect user to login page with returnUrl query param', ()=>{
+    localStorage.removeItem("activeUser");
+    stateMock.url ='profile/1';
+    expect(guard.canActivate(nextMock,stateMock)).toBeFalse();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/'],{queryParams:{returnUrl:1}});
   });
 
 });

@@ -326,4 +326,16 @@ describe('HomeComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['/profile', 9]);
   });
 
+  it('should show please login with an email if url has query param with returnUrl',()=>{
+    mockActivatedRoute.queryParams = of({returnUrl:3});
+    spyOn(JSONPlaceholder, 'getData').and.returnValue(of(mockUsers));
+    component.ngOnInit();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const pTag = compiled.querySelectorAll("p")[2];
+    expect(component.returnId.toString()).toEqual("3");
+    expect(component.rightEmail).toEqual(mockUsers[2].email);
+    expect(pTag.textContent).toContain("Please log in with the right email");
+  });
+
 });
