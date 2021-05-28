@@ -16,4 +16,15 @@ export class JSONPlaceholderService {
     return this.http.get<any>(url)
 
   }
+  getPosts() {
+    const url = "http://jsonplaceholder.typicode.com/posts";
+    return this.http.get(url);
+  }
+
+  getComments(){
+    const url = "http://jsonplaceholder.typicode.com/comments";
+    return this.http.get(url);
+  }
+
+
 }

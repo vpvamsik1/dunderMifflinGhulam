@@ -11,3 +11,30 @@ i{
     border: 2px solid black;
     padding: 3%;
 }
+
+.post-section {
+    margin-bottom: 10px;
+}
+
+.post-title {
+    font-size: larger;
+    font-weight: bold;
+}
+
+.post-body {
+    padding: 15px;
+    background: beige;
+    font-size: x-large;
+    margin-bottom: 20px;
+}
+
+.comment-info {
+    font-size: 20px;
+}
+
+.comment {
+    border: 1px solid;
+    border-radius: 20px;
+    padding: 15px;
+    margin-bottom: 5px;
+}
