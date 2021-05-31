@@ -1,6 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { JSONPlaceholderService } from '../services/jsonplaceholder.service';
@@ -17,13 +17,18 @@ describe('ProfileComponent', () => {
     params: of({ id: 1 })
   };
 
+  let routerMock = {
+    navigate: jasmine.createSpy('navigate')
+  }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ProfileComponent],
       imports: [RouterTestingModule, HttpClientModule],
       providers: [
         JSONPlaceholderService,
-        { provide: ActivatedRoute, useValue: mockActivatedRoute }
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: Router, useValue: routerMock }
       ]
     })
       .compileComponents();
@@ -69,6 +74,16 @@ describe('ProfileComponent', () => {
     component.ngOnInit();
     fixture.detectChanges();
     expect(component.userPostAndComment[0].comments.length).toEqual(5);
+  });
+
+  it('should logout the user', ()=>{
+    spyOn(JSONPlaceholder, 'getData').and.returnValue(of(mockUsers));
+    component.ngOnInit();
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement;
+    const btn = compiled.querySelector("button");
+    btn.click();
+    expect(routerMock.navigate).toHaveBeenCalledWith(['/']);
   })
 
 });
