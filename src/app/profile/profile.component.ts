@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
 
   initId() {
     this.route.params.subscribe((params: Params) => {
+      console.log(params);
       this.id = +params.id
       this.name = params.name;
       this.getUser(this.id);
@@ -63,7 +64,7 @@ export class ProfileComponent implements OnInit {
         postAndComment.comments = comments.filter((comment)=>comment.postId == post.id);
         this.userPostAndComment.push(postAndComment);
       });
-      console.log("post and comments",this.userPostAndComment);
+      // console.log("post and comments",this.userPostAndComment);
     })
   }
 
